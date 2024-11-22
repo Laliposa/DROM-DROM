@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samir's Page</title>
+    <style>
+        body {
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .name {
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .heart {
+            color: red;
+            font-size: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .heart-animation {
+            position: absolute;
+            font-size: 30px;
+            color: red;
+            animation: heart-animation 1s ease-out forwards;
+        }
+
+        @keyframes heart-animation {
+            0% {
+                transform: scale(1) translateY(0);
+            }
+            50% {
+                transform: scale(1.5) translateY(-100px);
+            }
+            100% {
+                transform: scale(0) translateY(-200px);
+                opacity: 0;
+            }
+        }
+
+        .mwah {
+            font-size: 30px;
+            color: white;
+            position: absolute;
+            animation: mwah-animation 2s ease-out forwards;
+        }
+
+        @keyframes mwah-animation {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="name">
+        Samir
+        <span class="heart" id="heart">❤️</span>
+    </div>
+
+    <script>
+        document.getElementById("heart").addEventListener("click", function() {
+            // Create hearts randomly on the screen
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart-animation");
+                heart.innerText = "❤️";
+                heart.style.left = Math.random() * 100 + "vw"; // Random position on X axis
+                heart.style.top = Math.random() * 100 + "vh"; // Random position on Y axis
+                document.body.appendChild(heart);
+
+                // Create "mwah mwah" text at random positions
+                let mwah = document.createElement("div");
+                mwah.classList.add("mwah");
+                mwah.innerText = "Mwah Mwah!";
+                mwah.style.left = Math.random() * 100 + "vw";
+                mwah.style.top = Math.random() * 100 + "vh";
+                document.body.appendChild(mwah);
+
+                // Remove heart after animation
+                setTimeout(() => heart.remove(), 1000);
+                setTimeout(() => mwah.remove(), 2000);
+            }
+        });
+    </script>
+
+</body>
+</html>
